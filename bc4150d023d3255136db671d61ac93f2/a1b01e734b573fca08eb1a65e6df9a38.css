@@ -1,0 +1,30 @@
+/*@font-face {
+    font-family: Quicksand;
+    src: url("../62933a2951ef01f4eafd9bdf4d3cd2f0/Fonts/Quicksand/Quicksand-VariableFont_wght.ttf");
+}
+
+body {
+    font-family: Quicksand, monospace, 'Courier New', Courier;
+}*/
+
+@font-face {
+    font-family: 'eorzean';
+    src: url("../Media/Fonts/Eorzean/eorzea.ttf");
+}
+
+.hidden {
+    font-family: 'eorzean', 'wingdings', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+    color: #00000000;
+    bottom: 10px;
+    right: 35px;
+    position: fixed;
+    margin: 0px 0px 0px 0px; /*Note: top right bottom left*/
+}
+
+.hiddenIcon {
+    color: rgba(71, 200, 16, 0.25);
+    bottom: 5px;
+    right: 20px;
+    position: fixed;
+}
