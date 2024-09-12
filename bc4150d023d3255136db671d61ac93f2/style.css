@@ -1,0 +1,32 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: Quicksand;
+    src: url("../62933a2951ef01f4eafd9bdf4d3cd2f0/980d14c0c85495b48b9a9134658e6121/Quicksand/Quicksand-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: Eorzean;
+    src: url("../62933a2951ef01f4eafd9bdf4d3cd2f0/980d14c0c85495b48b9a9134658e6121/Eorzean/eorzea.ttf");
+}
+
+.hidden {
+    font-family: wingdings;
+    color: white;
+    bottom: 10px;
+    right: 10px;
+    position: fixed;
+}
+
+
+body {
+    margin: 10px;
+    font-family: Quicksand, monospace, 'Courier New', Courier;
+}
+
+h1 {
+    font-family: Eorzean;
+}
