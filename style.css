@@ -1,6 +1,6 @@
 @font-face {
     font-family: Blogger Sans;
-    src: url("Fonts/blogger-sans-font/Bloggersans-0rzv.otf");
+    src: url("Media/Fonts/blogger-sans-font/Bloggersans-0rzv.otf");
 }
 
 body {
@@ -85,10 +85,22 @@ iframe {
     border: none;
 }
 
-img {
+div img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.493), 0 6px 20px 0 rgba(0, 0, 0, 0.164);
     border-radius: 20px;
+}
 
+
+.image-container {
+	width: 300px;
+}
+
+.swap-image {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.image-container:hover .swap-image {
+    content: url('Media/Images/DarukaEon2.png');
 }
 
 body div img {
