@@ -1,0 +1,125 @@
+@font-face {
+    font-family: Blogger Sans;
+    src: url("Fonts/blogger-sans-font/Bloggersans-0rzv.otf");
+}
+
+body {
+	text-align: left;
+    font-family: Blogger Sans;
+    background-color: #000000;
+	color: white;
+	background-image: url("Media/Images/4cowboys-1.png");
+	/* Use this background 4 transition effect */
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center;
+	color: white;
+	transition: background 0.5s;
+	/* Add for transition effect */
+	/* Add for transition effect */
+	/* ^^^^^^^^^^^^^^^^^^^^^^^^
+	 ^Add 4 transition effect^ */
+}
+
+/* nav menu section*/
+
+#nav_menu {
+	text-align: center; /* Center the navigation menu */
+}
+
+#nav_menu ul
+{
+	display: flex;
+	flex-basis: 100%;
+	justify-content: space-evenly;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+#nav_menu ul li 
+{
+    	flex-basis: 33%;
+}
+#nav_menu ul li a
+{
+	display: block;
+	text-align: center;
+	padding: 1em 0;
+	text-decoration: none;
+	background-color: #178735;
+	color: white;
+	font-weight: bold;
+}
+#nav_menu ul li a.current 
+{
+	color: white;
+}
+#nav_menu li 
+{
+	font-size: 120%;
+ 	padding-top: 0;
+	margin-top: 0;
+	margin-bottom: 0.25em;
+}
+
+/*Responsive web design thresholds*/
+@media only screen and (width <= 550px) {
+    img {
+        width: 100%;
+    }
+}
+
+/*^^^ Classmates' work^^^*/
+
+html,
+body {
+    height: 100%;
+}
+
+iframe {
+    margin: 8px 8px 8px -8px; /*Note: top right bottom left*/
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.493), 0 6px 20px 0 rgba(0, 0, 0, 0.164);
+    border-radius: 20px;
+
+}
+
+body div img {
+    box-shadow: none;
+}
+
+section {
+    width: 50%;
+	float: left;
+}
+
+aside {
+    width: 50%;
+    float: right;
+    position: relative;
+}
+
+/*Responsive web design thresholds*/
+@media only screen and (width <= 550px) {
+    section, aside {
+        float: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    section ul {
+        /* order: 1; */
+        margin: 16px 16px 0px 0px;
+    }
+    aside ul {
+        /* order: 2; */
+        margin: 0px 16px 16px 0px
+    }
+}
