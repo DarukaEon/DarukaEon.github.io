@@ -24,6 +24,7 @@ body {
 
 .hiddenIcon {
     color: rgba(0, 255, 21, 0.147);
+    font-size: 25px;
     bottom: 5px;
     right: 20px;
     position: fixed;
