@@ -17,9 +17,6 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-size: 48px;
     color: rgba(255, 255, 255, 0.067);
-    /*text-shadow: .5px -.5px 0px rgba(255, 255, 255, 1), -.5px .5px 0px rgba(255, 255, 255, 1), .5px .5px 0px rgba(255, 255, 255, 1), -.5px -.5px 0px rgba(255, 255, 255, 1);*/
-    /*text-shadow: .5px -.5px 0px rgba(0, 0, 0, 1), -.5px .5px 0px rgba(0, 0, 0, 1), .5px .5px 0px rgba(0, 0, 0, 1), -.5px -.5px 0px rgba(0, 0, 0, 1);*/
-    /*mix-blend-mode: overlay;*/
     background-color: black;
     background-image: url("a81259cef8e959c624df1d456e5d3297.gif");
     background-size: auto;
