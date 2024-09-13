@@ -119,14 +119,14 @@ async function handleCommand(command) {
         a.click();
         document.body.removeChild(a);
 
-    } else if (command === "wget 8f5cc6430613f1c12f36965050bb7197.zq5") {
+    } else if (command === "wget 8s5pp6430613s1p12s36965050oo7197.zq5") {
 
         // Simulate a file download
         await typewriterEffect("Downloading file...\n\n");
 
         var a = document.createElement('a');
-        a.href = '8f5cc6430613f1c12f36965050bb7197.zq5';
-        a.download = '8f5cc6430613f1c12f36965050bb7197.zq5'; // This sets the download filename
+        a.href = '8s5pp6430613s1p12s36965050oo7197.zq5';
+        a.download = '8s5pp6430613s1p12s36965050oo7197.zq5'; // This sets the download filename
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();
