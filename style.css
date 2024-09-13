@@ -30,7 +30,8 @@ body {
 #nav_menu ul {
 	display: flex;
 	flex-basis: 100%;
-	justify-content: space-evenly;
+	flex-direction: column;
+	justify-content: flex-start;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -43,12 +44,16 @@ body {
 
 #nav_menu ul li a {
 	display: block;
-	text-align: center;
-	padding: 1em 0;
+	text-align: left;
+	padding: 0;
 	text-decoration: none;
 	background-color: #178735;
 	color: white;
 	font-weight: bold;
+}
+
+#nav_menu ul li {
+    width: 20%; /* Ensure each list item takes up full width */
 }
 
 #nav_menu ul li a.current {
