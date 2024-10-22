@@ -52,14 +52,14 @@ footer {
 #nav_menu ul li {
     flex-basis: 33%;
 	width: 35%;
-	margin: 3px 0px 3px 300px;
+	margin: 0px 0px 0px 300px;
 }
 
 #nav_menu ul li a {
 	display: block;
 	text-align: left;
 	padding: 0;
-	margin: 10px;
+	margin: 5px;
 	text-decoration: none;
 }
 
@@ -108,18 +108,19 @@ aside {
 }*/
 
 /*Responsive web design thresholds*/
-@media only screen and (width <= 923.9px) {
+/*Note: [margin/padding]: top right bottom left*/
+
+@media only screen and (width <= 1117.60px) {
 	.image-container{
 		width: 41%;
-		margin: auto;
+		margin: 0px 10% 0px 0px;
 	}
 
 	#nav_menu ul li {
 		width: 45%;
-		margin: 0px;
+		margin: 0px 0px 0px 10%;
 	}
 }
-
 
 @media only screen and (width <= 550px) {
 	img {
@@ -139,6 +140,7 @@ aside {
 
 	#nav_menu ul li {
 		width: 100%;
+		margin: 0px;
 		padding: 0px;
 	}
 
