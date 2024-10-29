@@ -14,7 +14,7 @@ body {
     background-color: #000000;
 	color: white;
 	background-image: url("Media/Images/GreenGlitterBackground2.gif");
-	background-size: cover;
+	background-size: 1536px auto;;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-position: bottom;
