@@ -110,16 +110,29 @@ aside {
 /*Responsive web design thresholds*/
 /*Note: [margin/padding]: top right bottom left*/
 
-@media only screen and (width <= 1117.60px) {
+@media only screen and (width <= 1500px) {
 	.image-container{
-		width: 41%;
+		width: 40%;
 		margin: 0px 10% 0px 0px;
 	}
 
 	#nav_menu ul li {
-		width: 45%;
+		width: 40%;
 		margin: 0px 0px 0px 10%;
 	}
+	section, aside {
+        float: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    section ul {
+        /* order: 1; */
+        margin: 16px 16px 0px 0px; /*Note: top right bottom left*/
+    }
+    aside ul {
+        /* order: 2; */
+        margin: 0px 16px 16px 0px
+    }
 }
 
 @media only screen and (width <= 550px) {
