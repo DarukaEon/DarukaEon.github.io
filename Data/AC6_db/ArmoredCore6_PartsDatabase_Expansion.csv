@@ -1,0 +1,5 @@
+unitID,unitName,attackPower,impact,accumulativeImpact,blastRadius,effectRange,directHitAdjustment,resilience,duration
+1,Assault Armor,1500,2000,1380,60,200,230,,
+2,Pulse Armor,,,,,,,3300,10
+3,Pulse Protection,,,,,,,7000,25
+4,Terminal Armor,,,,,,,20000,5
