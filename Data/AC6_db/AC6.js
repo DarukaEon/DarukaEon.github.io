@@ -20,7 +20,7 @@ const PARTS = [
   };
   
   function loadCSVOptions(part) {
-    fetch(`ArmoredCore6_PartsDatabase_${part.file}.csv`)
+    fetch(`AC6_db/ArmoredCore6_PartsDatabase_${part.file}.csv`)
       .then(res => res.text())
       .then(data => {
         const [header, ...lines] = data.trim().split('\n');
