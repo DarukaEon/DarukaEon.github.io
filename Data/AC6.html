@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACVI Build Viewer & Uploader</title>
-    <link rel="icon" href="../Media/Images/CoughingCatIcon.png">
-    <link rel="stylesheet" href="../style.css">
-    <script src="AC6.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACVI Build Viewer & Uploader</title>
+  <link rel="icon" href="../Media/Images/CoughingCatIcon.png">
+  <link rel="stylesheet" href="../style.css">
+  <script src="AC6.js"></script>
 </head>
+
 <body>
   <h1>Armored Core VI Build Viewer</h1>
 
@@ -53,6 +55,9 @@
       <label>L-Back Unit:
         <select id="lback-select"></select>
       </label><br>
+      <label>Download Code:
+        <input type="text" id="download-code" required>
+      </label><br>
       <label>Notes:<br>
         <textarea id="notes" rows="3"></textarea>
       </label><br><br>
@@ -60,7 +65,7 @@
     </form>
   </section>
 
-  <section>
+  <aside>
     <h2>Saved Builds</h2>
     <table id="builds-table" border="1">
       <thead>
@@ -78,13 +83,15 @@
           <th>L-Arm</th>
           <th>R-Back</th>
           <th>L-Back</th>
+          <th>Download Code</th>
           <th>Notes</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
-  </section>
+  </aside>
 
-  
+
 </body>
+
 </html>

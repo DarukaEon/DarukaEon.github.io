@@ -16,7 +16,7 @@ const PARTS = [
 window.onload = () => {
   PARTS.forEach(part => loadCSVOptions(part));
   document.getElementById('build-form').addEventListener('submit', handleSubmit);
-  loadSavedBuilds();
+  loadBuild();
 };
 
 function loadCSVOptions(part) {
@@ -25,7 +25,7 @@ function loadCSVOptions(part) {
     .then(data => {
       const [header, ...lines] = data.trim().split('\n');
       const headers = header.split(',');
-      const nameIndex = headers.indexOf("unitName"); // Changed from "Part Name"
+      const nameIndex = headers.indexOf("unitName");
       if (nameIndex === -1) {
         console.error(`"unitName" column not found in ${part.file}.csv`);
         return;
@@ -47,19 +47,37 @@ function handleSubmit(event) {
   const build = {
     acName: document.getElementById('ac-name').value,
     parts: PARTS.map(part => document.getElementById(part.id).value),
+    downloadCode: document.getElementById('download-code').value,
     notes: document.getElementById('notes').value
   };
 
-  appendBuildToTable(build);
-  saveBuildToStorage(build);
+  buildTable(build);
+  saveBuild(build);
 
   document.getElementById('build-form').reset();
 }
 
-function appendBuildToTable(build) {
+function buildTable(build) {
   const row = document.createElement('tr');
   row.appendChild(makeCell(build.acName));
   build.parts.forEach(part => row.appendChild(makeCell(part)));
+
+  // Add download code cell with copy button
+  const codeCell = document.createElement('td');
+  const codeText = document.createElement('span');
+  codeText.textContent = build.downloadCode;
+  codeText.className = "download-code";
+  const copyBtn = document.createElement('button');
+  copyBtn.textContent = "Copy";
+  copyBtn.onclick = () => {
+    navigator.clipboard.writeText(build.downloadCode);
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => copyBtn.textContent = "Copy", 1000);
+  };
+  codeCell.appendChild(codeText);
+  codeCell.appendChild(copyBtn);
+  row.appendChild(codeCell);
+
   row.appendChild(makeCell(build.notes));
   document.querySelector('#builds-table tbody').appendChild(row);
 }
@@ -70,13 +88,13 @@ function makeCell(text) {
   return td;
 }
 
-function saveBuildToStorage(build) {
-  const builds = JSON.parse(localStorage.getItem('acviBuilds') || '[]');
+function saveBuild(build) {
+  const builds = JSON.parse(localStorage.getItem('ac6Builds') || '[]');
   builds.push(build);
-  localStorage.setItem('acviBuilds', JSON.stringify(builds));
+  localStorage.setItem('ac6Builds', JSON.stringify(builds));
 }
 
-function loadSavedBuilds() {
-  const builds = JSON.parse(localStorage.getItem('acviBuilds') || '[]');
-  builds.forEach(build => appendBuildToTable(build));
+function loadBuild() {
+  const builds = JSON.parse(localStorage.getItem('ac6Builds') || '[]');
+  builds.forEach(build => buildTable(build));
 }
