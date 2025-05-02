@@ -14,7 +14,7 @@ const PARTS = [
   { id: 'lback-select', file: 'L-Back_Unit' }
 ];
 
-const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbx1SNVLr9at0ag3krTuCVP2_jBYfSogmIkTp6XkxYW5LAwqOi27le-WZpWFazmVL2H1oQ/exec";
+const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwdKQs5Y_737fL3OsRZseCmwE8NhIxIuVqyd6tq8Sz3LkJQxVUmxI1eURLflgm8fQw70A/exec";
 
 window.onload = () => {
   PARTS.forEach(part => loadCSVOptions(part));
