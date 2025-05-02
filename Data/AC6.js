@@ -14,7 +14,7 @@ const PARTS = [
   { id: 'lback-select', file: 'L-Back_Unit' }
 ];
 
-const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyzsWjA_ReekqiZyfcVvUN6M0km67Yvy28Lo9cPUmIuuiNqM93Fnjyd6iNeXm2RPQkpyg/exec";
+const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxS6o36AYdA-y3luhOoOyNq7lQvSxsyiNu7ZRu-YghLJERO_eb7OkheCGaQEG-rQ2_d1Q/exec";
 
 window.onload = () => {
   PARTS.forEach(part => loadCSVOptions(part));
@@ -103,14 +103,13 @@ function makeCell(text) {
 }
 
 function googleSheetSave(build) {
+  const formData = new URLSearchParams();
+  formData.append("data", JSON.stringify(build));
+
   fetch(GOOGLE_SHEETS_WEBAPP_URL, {
     method: 'POST',
-    body: JSON.stringify(build),
-    headers: { 'Content-Type': 'application/json' }
+    body: formData
   })
-    .then(res => res.text())
-    .then(data => console.log('Saved to Google Sheets:', data))
-    .catch(err => console.error('Error saving build:', err));
 }
 
 function googleSheetLoad() {
