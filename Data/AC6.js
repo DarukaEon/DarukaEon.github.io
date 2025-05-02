@@ -47,7 +47,6 @@ function loadCSVOptions(part) {
 function handleSubmit(event) {
   event.preventDefault();
 
-  // 🕵️ Honeypot field check
   if (document.getElementById('website').value !== "") {
     alert("Bot submission detected. Submission blocked.");
     return;
