@@ -13,10 +13,14 @@
 
 <body>
   <h1>Armored Core VI Build Viewer</h1>
-
+  
   <section>
     <h2>Create a New Build</h2>
     <form id="build-form">
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      <!-- Honeypot anti-spam field (should remain empty) -->
+      <input type="text" id="website" name="website" style="display: none;" aria-hidden="true" tabindex="-1" autocomplete="off">
+
       <label>AC Name: <input type="text" id="ac-name" required></label><br>
 
       <label>Head:
@@ -61,6 +65,8 @@
       <label>Notes:<br>
         <textarea id="notes" rows="3"></textarea>
       </label><br><br>
+      <div class="g-recaptcha" data-sitekey="6LdRbSsrAAAAAG9VRqxTMPVqEpRJA8UjTbf7CJnq"></div>
+
       <button type="submit">Save Build</button>
     </form>
   </section>

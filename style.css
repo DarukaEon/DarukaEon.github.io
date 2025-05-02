@@ -96,16 +96,9 @@ aside {
     position: relative;
 }
 
-/*iframe {
-    margin: 8px 8px 8px -8px;
-    width: 416px;
-	height: 569px;
-    border: solid 5px;
-	border-color: rgb(71,200,16);
-	border-radius: 20px;
-	margin: 2px;
-	
-}*/
+.g-recaptcha {
+	margin: 10px 0;
+  }
 
 /*Responsive web design thresholds*/
 /*Note: [margin/padding]: top right bottom left*/
