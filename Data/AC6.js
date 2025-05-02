@@ -14,7 +14,7 @@ const PARTS = [
   { id: 'lback-select', file: 'L-Back_Unit' }
 ];
 
-const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbz_OBY85fMSrxJtPVzAmQHQqnbxMIfmssSQdUP4Txzzsx7IBVbg2dWwrtjr_TAQCYT_cw/exec";
+const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxDafgqfwR2XMpAEy5lJywXf-btoHoyFjFCDkLw7TaudyBgtzjpbZtlfibBEHpUtyyy/exec";
 
 window.onload = () => {
   PARTS.forEach(part => loadCSVOptions(part));
@@ -109,7 +109,7 @@ function googleSheetSave(build) {
   fetch(GOOGLE_SHEETS_WEBAPP_URL, {
     method: 'POST',
     body: formData
-  })
+  });
 }
 
 function googleSheetLoad() {
