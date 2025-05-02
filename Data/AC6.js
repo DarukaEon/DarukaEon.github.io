@@ -115,8 +115,29 @@ function googleSheetSave(build) {
 function googleSheetLoad() {
   fetch(GOOGLE_SHEETS_WEBAPP_URL)
     .then(res => res.json())
-    .then(builds => {
-      builds.forEach(build => buildTable(build));
+    .then(rawBuilds => {
+      rawBuilds.forEach(entry => {
+        const build = {
+          acName: entry.acName,
+          parts: [
+            entry.head,
+            entry.core,
+            entry.arms,
+            entry.legs,
+            entry.booster,
+            entry.generator,
+            entry.fcs,
+            entry.expansion,
+            entry.rarm,
+            entry.larm,
+            entry.rback,
+            entry.lback
+          ],
+          downloadCode: entry.downloadCode,
+          notes: entry.notes
+        };
+        buildTable(build);
+      });
     })
     .catch(err => console.error('Error loading builds:', err));
 }
