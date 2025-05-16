@@ -1,17 +1,17 @@
 html,
 body {
-    height: 95%;
+	height: 95%;
 }
 
 @font-face {
-    font-family: Blogger Sans;
-    src: url("Media/Fonts/blogger-sans-font/Bloggersans-0rzv.otf");
+	font-family: Blogger Sans;
+	src: url("Media/Fonts/blogger-sans-font/Bloggersans-0rzv.otf");
 }
 
 body {
 	text-align: left;
-    font-family: Blogger Sans;
-    background-color: #000000;
+	font-family: Blogger Sans;
+	background-color: #000000;
 	color: white;
 	background-image: url("Media/Images/GreenGlitterBackground2.gif");
 	background-size: 1920px auto;
@@ -24,8 +24,8 @@ body {
 footer {
 	margin: 0px;
 	bottom: -10px;
-    left: 20px;
-    position: fixed;
+	left: 20px;
+	position: fixed;
 }
 
 /* nav menu section*/
@@ -42,7 +42,7 @@ footer {
 
 #nav_menu li {
 	font-size: 120%;
- 	padding-top: 0;
+	padding-top: 0;
 	margin-top: 0;
 	margin-bottom: 0.25em;
 }
@@ -50,7 +50,7 @@ footer {
 /*Note: [margin/padding]: top right bottom left*/
 
 #nav_menu ul li {
-    flex-basis: 33%;
+	flex-basis: 33%;
 	width: 35%;
 	margin: 0px 0px 0px 300px;
 }
@@ -68,7 +68,7 @@ footer {
 	float: right;
 	position: relative;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.493), 0 6px 20px 0 rgba(0, 0, 0, 0.164);
-    border-radius: 20px;
+	border-radius: 20px;
 	margin: 3px 200px 3px 0px;
 	background-color: #1994323f;
 }
@@ -78,33 +78,33 @@ footer {
 }
 
 .swap-image {
-    transition: opacity 0.5s ease-in-out;
+	transition: opacity 0.5s ease-in-out;
 }
 
 .image-container:hover .swap-image {
-    content: url('Media/Images/DarukaEon2.png');
+	content: url('Media/Images/DarukaEon2.png');
 }
 
 section {
-    width: 50%;
+	width: 50%;
 	float: left;
 }
 
 aside {
-    width: 50%;
-    float: right;
-    position: relative;
+	width: 50%;
+	float: right;
+	position: relative;
 }
 
 .g-recaptcha {
 	margin: 10px 0;
-  }
+}
 
 /*Responsive web design thresholds*/
 /*Note: [margin/padding]: top right bottom left*/
 
-@media only screen and (width <= 1500px) {
-	.image-container{
+@media only screen and (width <=1500px) {
+	.image-container {
 		width: 40%;
 		margin: 0px 10% 0px 0px;
 	}
@@ -113,36 +113,62 @@ aside {
 		width: 40%;
 		margin: 0px 0px 0px 10%;
 	}
-	section, aside {
-        float: none;
-        flex-direction: column;
-        width: 100%;
-    }
-    section ul {
-        /* order: 1; */
-        margin: 16px 16px 0px 0px; /*Note: top right bottom left*/
-    }
-    aside ul {
-        /* order: 2; */
-        margin: 0px 16px 16px 0px
-    }
+
+	section,
+	aside {
+		float: none;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	section ul {
+		/* order: 1; */
+		margin: 16px 16px 0px 0px;
+		/*Note: top right bottom left*/
+	}
+
+	aside ul {
+		/* order: 2; */
+		margin: 0px 16px 16px 0px
+	}
 }
 
-@media only screen and (width <= 550px) {
+#toggle-form {
+	font-size: 0.9rem;
+	padding: 4px 10px;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+#form-container {
+	overflow: hidden;
+	max-height: 1000px;
+	transition: max-height 0.5s ease-out;
+}
+
+#form-container.hidden {
+	max-height: 0;
+	transition: max-height 0.5s ease-in;
+}
+
+
+@media only screen and (width <=550px) {
 	img {
 		width: 100%;
-    }
+	}
 
 	.image-container {
 		width: 100%;
-		margin:0px;
+		margin: 0px;
 	}
 
 	#nav_menu {
 		width: 100%;
-		margin:0;
-		padding:0;
-    }
+		margin: 0;
+		padding: 0;
+	}
 
 	#nav_menu ul li {
 		width: 100%;
@@ -154,18 +180,21 @@ aside {
 		background-color: transparent;
 	}
 
-    section, aside {
-        float: none;
-        flex-direction: column;
-        width: 100%;
-    }
+	section,
+	aside {
+		float: none;
+		flex-direction: column;
+		width: 100%;
+	}
 
-    section ul {
-        /* order: 1; */
-        margin: 16px 16px 0px 0px; /*Note: top right bottom left*/
-    }
-    aside ul {
-        /* order: 2; */
-        margin: 0px 16px 16px 0px
-    }
+	section ul {
+		/* order: 1; */
+		margin: 16px 16px 0px 0px;
+		/*Note: top right bottom left*/
+	}
+
+	aside ul {
+		/* order: 2; */
+		margin: 0px 16px 16px 0px
+	}
 }

@@ -20,6 +20,30 @@ window.onload = () => {
   PARTS.forEach(part => loadCSVOptions(part));
   document.getElementById('build-form').addEventListener('submit', handleSubmit);
   googleSheetLoad();
+
+  const toggleBtn = document.getElementById("toggle-form");
+  const container = document.getElementById("form-container");
+
+  const savedState = localStorage.getItem("formVisibility");
+  if (savedState === "hidden") {
+    container.classList.add("hidden");
+    toggleBtn.textContent = "Show";
+  } else {
+    toggleBtn.textContent = "Hide";
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    if (container.classList.contains("hidden")) {
+      container.classList.remove("hidden");
+      toggleBtn.textContent = "Hide";
+      localStorage.setItem("formVisibility", "shown");
+    } else {
+      container.classList.add("hidden");
+      toggleBtn.textContent = "Show";
+      localStorage.setItem("formVisibility", "hidden");
+    }
+  });
+
 };
 
 function loadCSVOptions(part) {
@@ -54,7 +78,7 @@ function handleSubmit(event) {
 
   const captchaResponse = grecaptcha.getResponse();
   if (!captchaResponse) {
-    alert("Please confirm you're not a beep boopin' robot.");
+    alert("Please confirm you're not a robot using the checkbox.");
     return;
   }
 
@@ -70,7 +94,6 @@ function handleSubmit(event) {
   document.getElementById('build-form').reset();
   grecaptcha.reset();
 }
-
 
 function buildTable(build) {
   const row = document.createElement('tr');
@@ -109,29 +132,24 @@ function googleSheetSave(build) {
   fetch(GOOGLE_SHEETS_WEBAPP_URL, {
     method: 'POST',
     body: formData
-  });
+  })
+    .then(res => res.text())
+    .then(data => console.log('Saved to Google Sheets:', data))
+    .catch(err => console.error('Error saving build:', err));
 }
 
 function googleSheetLoad() {
   fetch(GOOGLE_SHEETS_WEBAPP_URL)
     .then(res => res.json())
     .then(rawBuilds => {
+      console.log("Loaded builds:", rawBuilds);
       rawBuilds.forEach(entry => {
         const build = {
           acName: entry.acName,
           parts: [
-            entry.head,
-            entry.core,
-            entry.arms,
-            entry.legs,
-            entry.booster,
-            entry.generator,
-            entry.fcs,
-            entry.expansion,
-            entry.rarm,
-            entry.larm,
-            entry.rback,
-            entry.lback
+            entry.head, entry.core, entry.arms, entry.legs,
+            entry.booster, entry.generator, entry.fcs, entry.expansion,
+            entry.rarm, entry.larm, entry.rback, entry.lback
           ],
           downloadCode: entry.downloadCode,
           notes: entry.notes

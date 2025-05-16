@@ -8,18 +8,22 @@
   <title>ACVI Build Viewer & Uploader</title>
   <link rel="icon" href="../Media/Images/CoughingCatIcon.png">
   <link rel="stylesheet" href="../style.css">
-  <script src="AC6.js"></script>
+
 </head>
 
 <body>
   <h1>Armored Core VI Build Viewer</h1>
-  
-  <p>
-    <h2>Create a New Build</h2>
-    <form id="build-form">
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-      <input type="text" id="website" name="website" style="display: none;" aria-hidden="true" tabindex="-1" autocomplete="off">
+  <p>
+  <h2>
+    Create a New Build
+    <button type="button" id="toggle-form" style="margin-left: 10px;">Hide</button>
+  </h2>
+
+  <div id="form-container">
+    <form id="build-form">
+      <!-- Honeypot anti-spam field (should remain empty) -->
+      <input type="text" id="website" name="website" style="display: none;" autocomplete="off">
 
       <label>AC Name: <input type="text" id="ac-name" required></label><br>
 
@@ -59,45 +63,49 @@
       <label>L-Back Unit:
         <select id="lback-select"></select>
       </label><br>
+
       <label>Download Code:
         <input type="text" id="download-code" required>
       </label><br>
+
       <label>Notes:<br>
         <textarea id="notes" rows="3"></textarea>
       </label><br><br>
-      <div class="g-recaptcha" data-sitekey="6LdRbSsrAAAAAG9VRqxTMPVqEpRJA8UjTbf7CJnq"></div>
 
+      <div class="g-recaptcha" data-sitekey="6LdRbSsrAAAAAG9VRqxTMPVqEpRJA8UjTbf7CJnq"></div>
       <button type="submit">Save Build</button>
     </form>
+  </div>
   </p>
+
 
   <p>
-    <h2>Saved Builds</h2>
-    <table id="builds-table" border="1">
-      <thead>
-        <tr>
-          <th>AC Name</th>
-          <th>Head</th>
-          <th>Core</th>
-          <th>Arms</th>
-          <th>Legs</th>
-          <th>Booster</th>
-          <th>Generator</th>
-          <th>FCS</th>
-          <th>Expansion</th>
-          <th>R-Arm</th>
-          <th>L-Arm</th>
-          <th>R-Back</th>
-          <th>L-Back</th>
-          <th>Download Code</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  <h2>Saved Builds</h2>
+  <table id="builds-table" border="1">
+    <thead>
+      <tr>
+        <th>AC Name</th>
+        <th>Head</th>
+        <th>Core</th>
+        <th>Arms</th>
+        <th>Legs</th>
+        <th>Booster</th>
+        <th>Generator</th>
+        <th>FCS</th>
+        <th>Expansion</th>
+        <th>R-Arm</th>
+        <th>L-Arm</th>
+        <th>R-Back</th>
+        <th>L-Back</th>
+        <th>Download Code</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
   </p>
 
-
+  <script src="AC6.js"></script>
 </body>
 
 </html>
