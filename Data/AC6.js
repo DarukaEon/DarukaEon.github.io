@@ -21,6 +21,19 @@ window.onload = () => {
   document.getElementById('build-form').addEventListener('submit', handleSubmit);
   googleSheetLoad();
 
+  const music = document.getElementById("bg-music");
+  const musicToggle = document.getElementById("music-toggle");
+
+  musicToggle.addEventListener("click", () => {
+    if (music.paused) {
+      music.play();
+      musicToggle.textContent = "Pause Music";
+    } else {
+      music.pause();
+      musicToggle.textContent = "Play Music";
+    }
+  });
+
   const toggleBtn = document.getElementById("toggle-form");
   const container = document.getElementById("form-container");
 
@@ -159,3 +172,16 @@ function googleSheetLoad() {
     })
     .catch(err => console.error('Error loading builds:', err));
 }
+
+const music = document.getElementById("bg-music");
+const musicToggle = document.getElementById("music-toggle");
+
+musicToggle.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    musicToggle.textContent = "Pause Music";
+  } else {
+    music.pause();
+    musicToggle.textContent = "Play Music";
+  }
+});
