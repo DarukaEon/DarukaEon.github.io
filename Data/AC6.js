@@ -13,7 +13,7 @@ function copyToClipboard(button) {
 
 
 
-function buildTable(build); {
+function buildTable(build) {
   const container = document.getElementById("builds-container");
   const entry = document.createElement("div");
   entry.className = "build-entry";
@@ -247,7 +247,7 @@ function googleSheetLoad() {
           code: entry.downloadCode,
           notes: entry.notes
         };
-        buildTable(build);;
+        buildTable(build);
       });
     })
     .catch(err => console.error('Error loading builds:', err));
