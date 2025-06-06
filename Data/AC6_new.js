@@ -1,135 +1,14 @@
 
-const PARTS = [
-  { id: 'head-select', file: 'Head' },
-  { id: 'core-select', file: 'Core' },
-  { id: 'arms-select', file: 'Arms' },
-  { id: 'legs-select', file: 'Legs' },
-  { id: 'booster-select', file: 'Booster' },
-  { id: 'generator-select', file: 'Generator' },
-  { id: 'fcs-select', file: 'FCS' },
-  { id: 'expansion-select', file: 'Expansion' },
-  { id: 'rarm-select', file: 'R-Arm_Unit' },
-  { id: 'larm-select', file: 'L-Arm_Unit' },
-  { id: 'rback-select', file: 'R-Back_Unit' },
-  { id: 'lback-select', file: 'L-Back_Unit' }
-];
-
-const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxDafgqfwR2XMpAEy5lJywXf-btoHoyFjFCDkLw7TaudyBgtzjpbZtlfibBEHpUtyyy/exec";
-
-window.onload = () => {
-  PARTS.forEach(part => loadCSVOptions(part));
-  document.getElementById('build-form').addEventListener('submit', handleSubmit);
-  googleSheetLoad();
-
-  const music = document.getElementById("bg-music");
-  const musicToggle = document.getElementById("music-toggle");
-
-  musicToggle.addEventListener("click", () => {
-    if (music.paused) {
-      music.play();
-      musicToggle.textContent = "Pause Music";
-    } else {
-      music.pause();
-      musicToggle.textContent = "Play Music";
-    }
+function copyToClipboard(button) {
+  const code = button.parentElement.querySelector('.code-text').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    button.textContent = "Copied!";
+    setTimeout(() => {
+      button.textContent = "Copy";
+    }, 1000);
+  }).catch(err => {
+    console.error("Failed to copy:", err);
   });
-
-  const toggleBtn = document.getElementById("toggle-form");
-  const container = document.getElementById("form-container");
-
-  const savedState = localStorage.getItem("formVisibility");
-  if (savedState === "hidden") {
-    container.classList.add("hidden");
-    toggleBtn.textContent = "Show";
-  } else {
-    toggleBtn.textContent = "Hide";
-  }
-
-  toggleBtn.addEventListener("click", () => {
-    if (container.classList.contains("hidden")) {
-      container.classList.remove("hidden");
-      toggleBtn.textContent = "Hide";
-      localStorage.setItem("formVisibility", "shown");
-    } else {
-      container.classList.add("hidden");
-      toggleBtn.textContent = "Show";
-      localStorage.setItem("formVisibility", "hidden");
-    }
-  });
-
-};
-
-function loadCSVOptions(part) {
-  fetch(`Parts/${part.file}.csv`)
-    .then(res => res.text())
-    .then(data => {
-      const [header, ...lines] = data.trim().split('\n');
-      const headers = header.split(',');
-      const nameIndex = headers.indexOf("unitName");
-      if (nameIndex === -1) {
-        console.error(`"unitName" column not found in ${part.file}.csv`);
-        return;
-      }
-      const select = document.getElementById(part.id);
-      lines.forEach(line => {
-        const cells = line.split(',');
-        const option = document.createElement('option');
-        option.value = option.textContent = cells[nameIndex];
-        select.appendChild(option);
-      });
-    })
-    .catch(err => console.error(`Error loading ${part.file}:`, err));
-}
-
-function handleSubmit(event) {
-  event.preventDefault();
-
-  const acName = document.getElementById('ac-name').value;
-  const notes = document.getElementById('notes').value;
-
-  const filter = new Filter();
-  filter.addWords('custombadword'); // if needed
-  const combinedText = (acName + notes).replace(/\s+/g, '');
-
-  if (filter.isProfane(combinedText)) {
-    alert("Please remove offensive language from your build.");
-    return;
-  }
-
-  if (document.getElementById('website').value !== "") {
-    alert("Bot submission detected. Submission blocked.");
-    return;
-  }
-
-  const captchaResponse = grecaptcha.getResponse();
-  if (!captchaResponse) {
-    alert("Please confirm you're not a robot using the checkbox.");
-    return;
-  }
-
-  const build = {
-  acName: document.getElementById('ac-name').value,
-  head: document.getElementById('head-select').value,
-  core: document.getElementById('core-select').value,
-  arms: document.getElementById('arms-select').value,
-  legs: document.getElementById('legs-select').value,
-  booster: document.getElementById('booster-select').value,
-  generator: document.getElementById('generator-select').value,
-  fcs: document.getElementById('fcs-select').value,
-  expansion: document.getElementById('expansion-select').value,
-  rarm: document.getElementById('rarm-select').value,
-  larm: document.getElementById('larm-select').value,
-  rback: document.getElementById('rback-select').value,
-  lback: document.getElementById('lback-select').value,
-  code: document.getElementById('download-code').value,
-  notes: document.getElementById('notes').value
-};
-
-
-  buildTable(build);
-  googleSheetSave(build);
-  document.getElementById('build-form').reset();
-  grecaptcha.reset();
 }
 
 function buildTable(build) {
@@ -163,11 +42,127 @@ function buildTable(build) {
   container.appendChild(entry);
 }
 
+const PARTS = [
+  { id: 'head-select', file: 'Head' },
+  { id: 'core-select', file: 'Core' },
+  { id: 'arms-select', file: 'Arms' },
+  { id: 'legs-select', file: 'Legs' },
+  { id: 'booster-select', file: 'Booster' },
+  { id: 'generator-select', file: 'Generator' },
+  { id: 'fcs-select', file: 'FCS' },
+  { id: 'expansion-select', file: 'Expansion' },
+  { id: 'rarm-select', file: 'R-Arm_Unit' },
+  { id: 'larm-select', file: 'L-Arm_Unit' },
+  { id: 'rback-select', file: 'R-Back_Unit' },
+  { id: 'lback-select', file: 'L-Back_Unit' }
+];
 
-function makeCell(text) {
-  const td = document.createElement('td');
-  td.textContent = text;
-  return td;
+const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxDafgqfwR2XMpAEy5lJywXf-btoHoyFjFCDkLw7TaudyBgtzjpbZtlfibBEHpUtyyy/exec";
+const BAD_WORDS = ["badword1", "badword2", "testword", "curseword"];
+
+window.onload = () => {
+  PARTS.forEach(part => loadCSVOptions(part));
+  document.getElementById('build-form').addEventListener('submit', handleSubmit);
+  googleSheetLoad();
+
+  const toggleBtn = document.getElementById("toggle-form");
+  const container = document.getElementById("form-container");
+  const savedState = localStorage.getItem("formVisibility");
+  if (savedState === "hidden") {
+    container.classList.add("hidden");
+    toggleBtn.textContent = "Show";
+  } else {
+    toggleBtn.textContent = "Hide";
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    if (container.classList.contains("hidden")) {
+      container.classList.remove("hidden");
+      toggleBtn.textContent = "Hide";
+      localStorage.setItem("formVisibility", "shown");
+    } else {
+      container.classList.add("hidden");
+      toggleBtn.textContent = "Show";
+      localStorage.setItem("formVisibility", "hidden");
+    }
+  });
+
+  document.getElementById('search-bar')?.addEventListener('input', function () {
+    const filter = this.value.toLowerCase();
+    const entries = document.querySelectorAll('.build-entry');
+    entries.forEach(entry => {
+      const text = entry.textContent.toLowerCase();
+      entry.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+};
+
+function containsProfanity(text) {
+  const normalized = text.toLowerCase().replace(/\s+/g, '');
+  return BAD_WORDS.some(bad => normalized.includes(bad));
+}
+
+function loadCSVOptions(part) {
+  fetch(`Parts/${part.file}.csv`)
+    .then(res => res.text())
+    .then(data => {
+      const [header, ...lines] = data.trim().split('\n');
+      const headers = header.split(',');
+      const nameIndex = headers.indexOf("unitName");
+      if (nameIndex === -1) return;
+
+      const select = document.getElementById(part.id);
+      lines.forEach(line => {
+        const cells = line.split(',');
+        const option = document.createElement('option');
+        option.value = option.textContent = cells[nameIndex];
+        select.appendChild(option);
+      });
+    });
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+
+  if (document.getElementById('website').value !== "") {
+    alert("Bot submission detected.");
+    return;
+  }
+
+  const captchaResponse = grecaptcha.getResponse();
+  if (!captchaResponse) {
+    alert("Please verify CAPTCHA.");
+    return;
+  }
+
+  const build = {
+    acName: document.getElementById('ac-name').value,
+    head: document.getElementById('head-select').value,
+    core: document.getElementById('core-select').value,
+    arms: document.getElementById('arms-select').value,
+    legs: document.getElementById('legs-select').value,
+    booster: document.getElementById('booster-select').value,
+    generator: document.getElementById('generator-select').value,
+    fcs: document.getElementById('fcs-select').value,
+    expansion: document.getElementById('expansion-select').value,
+    rarm: document.getElementById('rarm-select').value,
+    larm: document.getElementById('larm-select').value,
+    rback: document.getElementById('rback-select').value,
+    lback: document.getElementById('lback-select').value,
+    code: document.getElementById('download-code').value,
+    notes: document.getElementById('notes').value
+  };
+
+  const combinedText = (build.acName + build.notes).replace(/\s+/g, '');
+  if (containsProfanity(combinedText)) {
+    alert("Please remove offensive words from AC Name or Notes.");
+    return;
+  }
+
+  buildTable(build);
+  googleSheetSave(build);
+  document.getElementById('build-form').reset();
+  grecaptcha.reset();
 }
 
 function googleSheetSave(build) {
@@ -187,33 +182,25 @@ function googleSheetLoad() {
   fetch(GOOGLE_SHEETS_WEBAPP_URL)
     .then(res => res.json())
     .then(rawBuilds => {
-      console.log("Loaded builds:", rawBuilds);
       rawBuilds.forEach(entry => {
-        const build = {
+        buildTable({
           acName: entry.acName,
-          parts: [
-            entry.head, entry.core, entry.arms, entry.legs,
-            entry.booster, entry.generator, entry.fcs, entry.expansion,
-            entry.rarm, entry.larm, entry.rback, entry.lback
-          ],
-          downloadCode: entry.downloadCode,
+          head: entry.head,
+          core: entry.core,
+          arms: entry.arms,
+          legs: entry.legs,
+          booster: entry.booster,
+          generator: entry.generator,
+          fcs: entry.fcs,
+          expansion: entry.expansion,
+          rarm: entry.rarm,
+          larm: entry.larm,
+          rback: entry.rback,
+          lback: entry.lback,
+          code: entry.downloadCode,
           notes: entry.notes
-        };
-        buildTable(build);
+        });
       });
     })
     .catch(err => console.error('Error loading builds:', err));
 }
-
-const music = document.getElementById("bg-music");
-const musicToggle = document.getElementById("music-toggle");
-
-musicToggle.addEventListener("click", () => {
-  if (music.paused) {
-    music.play();
-    musicToggle.textContent = "Pause Music";
-  } else {
-    music.pause();
-    musicToggle.textContent = "Play Music";
-  }
-});
