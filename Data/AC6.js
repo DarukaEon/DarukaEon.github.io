@@ -1,4 +1,49 @@
 
+function copyToClipboard(button) {
+  const code = button.parentElement.querySelector('.code-text').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    button.textContent = "Copied!";
+    setTimeout(() => {
+      button.textContent = "Copy";
+    }, 1000);
+  }).catch(err => {
+    console.error("Failed to copy:", err);
+  });
+}
+
+
+
+function addBuildToPage(build) {
+  const container = document.getElementById("builds-container");
+  const entry = document.createElement("div");
+  entry.className = "build-entry";
+  entry.innerHTML = `
+    <table>
+      <tr><th>AC Name</th><td>${build.acName}</td><td rowspan="14" class="notes-cell">${build.notes}</td></tr>
+      <tr><th>Head</th><td>${build.head}</td></tr>
+      <tr><th>Core</th><td>${build.core}</td></tr>
+      <tr><th>Arms</th><td>${build.arms}</td></tr>
+      <tr><th>Legs</th><td>${build.legs}</td></tr>
+      <tr><th>Booster</th><td>${build.booster}</td></tr>
+      <tr><th>Generator</th><td>${build.generator}</td></tr>
+      <tr><th>FCS</th><td>${build.fcs}</td></tr>
+      <tr><th>Expansion</th><td>${build.expansion}</td></tr>
+      <tr><th>R-Arm</th><td>${build.rarm}</td></tr>
+      <tr><th>L-Arm</th><td>${build.larm}</td></tr>
+      <tr><th>R-Back</th><td>${build.rback}</td></tr>
+      <tr><th>L-Back</th><td>${build.lback}</td></tr>
+      <tr>
+        <th>Download Code</th>
+        <td>
+          <span class="code-text">${build.code}</span>
+          <button onclick="copyToClipboard(this)">Copy</button>
+        </td>
+      </tr>
+    </table>
+  `;
+  container.appendChild(entry);
+}
+
 const PARTS = [
   { id: 'head-select', file: 'Head' },
   { id: 'core-select', file: 'Core' },
@@ -57,6 +102,17 @@ window.onload = () => {
     }
   });
 
+
+  document.getElementById('search-bar').addEventListener('input', function () {
+    const filter = this.value.toLowerCase();
+    const entries = document.querySelectorAll('.build-entry');
+
+    entries.forEach(entry => {
+      const text = entry.textContent.toLowerCase();
+      entry.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+
 };
 
 function loadCSVOptions(part) {
@@ -106,6 +162,24 @@ function handleSubmit(event) {
   googleSheetSave(build);
   document.getElementById('build-form').reset();
   grecaptcha.reset();
+
+  const acName = document.getElementById('ac-name').value;
+  const notes = document.getElementById('notes').value;
+
+  // Initialize the filter
+  const filter = new Filter();
+
+  filter.addWords("fuck", "fucker", "nigger", "nigga", "cunt", "bitch", "asshole", "dyke", "kys", "pussy", "faggot", "fag", "chink");
+
+  const normalize = str => str.toLowerCase().replace(/\s+/g, "");
+
+  const isProfane = text => filter.isProfane(normalize(text));
+
+  if (isProfane(acName) || isProfane(notes)) {
+    alert("Your AC name or notes contain inappropriate language. Please revise and try again.");
+    return;
+  }
+
 }
 
 function buildTable(build) {
@@ -151,6 +225,7 @@ function googleSheetSave(build) {
     .catch(err => console.error('Error saving build:', err));
 }
 
+
 function googleSheetLoad() {
   fetch(GOOGLE_SHEETS_WEBAPP_URL)
     .then(res => res.json())
@@ -159,19 +234,27 @@ function googleSheetLoad() {
       rawBuilds.forEach(entry => {
         const build = {
           acName: entry.acName,
-          parts: [
-            entry.head, entry.core, entry.arms, entry.legs,
-            entry.booster, entry.generator, entry.fcs, entry.expansion,
-            entry.rarm, entry.larm, entry.rback, entry.lback
-          ],
-          downloadCode: entry.downloadCode,
+          head: entry.head,
+          core: entry.core,
+          arms: entry.arms,
+          legs: entry.legs,
+          booster: entry.booster,
+          generator: entry.generator,
+          fcs: entry.fcs,
+          expansion: entry.expansion,
+          rarm: entry.rarm,
+          larm: entry.larm,
+          rback: entry.rback,
+          lback: entry.lback,
+          code: entry.downloadCode,
           notes: entry.notes
         };
-        buildTable(build);
+        addBuildToPage(build);
       });
     })
     .catch(err => console.error('Error loading builds:', err));
 }
+
 
 const music = document.getElementById("bg-music");
 const musicToggle = document.getElementById("music-toggle");

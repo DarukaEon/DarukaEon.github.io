@@ -8,12 +8,20 @@
   <title>ACVI Build Viewer & Uploader</title>
   <link rel="icon" href="../Media/Images/CoughingCatIcon.png">
   <link rel="stylesheet" href="../style.css">
-
+  <script src="https://cdn.jsdelivr.net/npm/bad-words@3.0.4/lib/badwords.min.js"></script>
 </head>
 
 <body>
   <h1>Armored Core VI Build Viewer</h1>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <div id="music-player">
+    <audio id="bg-music" loop autoplay>
+      <source src="../Media/Sounds/Armored Core The Last Raven - The Game.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <button id="music-toggle">Play Music</button>
+  </div>
 
   <p>
   <h2>
@@ -64,59 +72,62 @@
       <label>L-Back Unit:
         <select id="lback-select"></select>
       </label><br>
-
       <label>Download Code:
         <input type="text" id="download-code" required>
       </label><br>
-
       <label>Notes:<br>
         <textarea id="notes" rows="3"></textarea>
       </label><br><br>
-
       <div class="g-recaptcha" data-sitekey="6LdRbSsrAAAAAG9VRqxTMPVqEpRJA8UjTbf7CJnq"></div>
       <button type="submit">Save Build</button>
     </form>
   </div>
+  <br>
+  <input type="text" id="search-bar" placeholder="🔎Search builds..."
+    style="margin-bottom: 15px; width: 20%; padding: 8px; font-size: 14px;">
   </p>
 
 
   <p>
   <h2>Saved Builds</h2>
-  <table id="builds-table" border="1">
-    <thead>
-      <tr>
-        <th>AC Name</th>
-        <th>Head</th>
-        <th>Core</th>
-        <th>Arms</th>
-        <th>Legs</th>
-        <th>Booster</th>
-        <th>Generator</th>
-        <th>FCS</th>
-        <th>Expansion</th>
-        <th>R-Arm</th>
-        <th>L-Arm</th>
-        <th>R-Back</th>
-        <th>L-Back</th>
-        <th>Download Code</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <div id="builds-container"></div>
   </p>
 
   <script src="AC6.js"></script>
 </body>
 
-<div id="music-player">
-  <audio id="bg-music" loop autoplay>
-    <source src="../Media/Sounds/Armored Core The Last Raven - The Game.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  <button id="music-toggle">Play Music</button>
-</div>
-
 
 
 </html>
+<style>
+  .build-entry {
+    border: 1px solid #aaa;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    max-width: 750px;
+    background-color: #00000066;
+  }
+
+  .build-entry table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .build-entry th {
+    text-align: left;
+    width: 150px;
+    padding: 6px;
+    background-color: #eaeaea61;
+  }
+
+  .build-entry td {
+    padding: 6px;
+  }
+
+  .notes-cell {
+    vertical-align: top;
+    width: 250px;
+    padding-left: 15px;
+  }
+</style>
