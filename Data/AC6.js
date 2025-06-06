@@ -153,7 +153,18 @@ function handleSubmit(event) {
 
   const build = {
     acName: document.getElementById('ac-name').value,
-    parts: PARTS.map(part => document.getElementById(part.id).value),
+    head: document.getElementById('head-select').value,
+    core: document.getElementById('core-select').value,
+    arms: document.getElementById('arms-select').value,
+    legs: document.getElementById('legs-select').value,
+    booster: document.getElementById('booster-select').value,
+    generator: document.getElementById('generator-select').value,
+    fcs: document.getElementById('fcs-select').value,
+    expansion: document.getElementById('expansion-select').value,
+    rarm: document.getElementById('rarm-select').value,
+    larm: document.getElementById('larm-select').value,
+    rback: document.getElementById('rback-select').value,
+    lback: document.getElementById('lback-select').value,
     downloadCode: document.getElementById('download-code').value,
     notes: document.getElementById('notes').value
   };
@@ -162,30 +173,6 @@ function handleSubmit(event) {
   googleSheetSave(build);
   document.getElementById('build-form').reset();
   grecaptcha.reset();
-}
-
-function addBuildToPage(build) {
-  const row = document.createElement('tr');
-  row.appendChild(makeCell(build.acName));
-  build.parts.forEach(part => row.appendChild(makeCell(part)));
-
-  const codeCell = document.createElement('td');
-  const codeText = document.createElement('span');
-  codeText.textContent = build.downloadCode;
-  codeText.className = "download-code";
-  const copyBtn = document.createElement('button');
-  copyBtn.textContent = "Copy";
-  copyBtn.onclick = () => {
-    navigator.clipboard.writeText(build.downloadCode);
-    copyBtn.textContent = "Copied!";
-    setTimeout(() => copyBtn.textContent = "Copy", 1000);
-  };
-  codeCell.appendChild(codeText);
-  codeCell.appendChild(copyBtn);
-  row.appendChild(codeCell);
-
-  row.appendChild(makeCell(build.notes));
-  document.querySelector('#builds-table tbody').appendChild(row);
 }
 
 function makeCell(text) {
