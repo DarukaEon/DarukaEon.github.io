@@ -11,8 +11,6 @@ function copyToClipboard(button) {
   });
 }
 
-
-
 function addBuildToPage(build) {
   const container = document.getElementById("builds-container");
   const entry = document.createElement("div");
@@ -102,24 +100,21 @@ window.onload = () => {
     }
   });
 
-
   document.getElementById('search-bar').addEventListener('input', function () {
     const filter = this.value.toLowerCase();
     const entries = document.querySelectorAll('.build-entry');
-
     entries.forEach(entry => {
       const text = entry.textContent.toLowerCase();
       entry.style.display = text.includes(filter) ? '' : 'none';
     });
   });
-
 };
 
 function loadCSVOptions(part) {
   fetch(`Parts/${part.file}.csv`)
     .then(res => res.text())
     .then(data => {
-      const [header, ...lines] = data.trim().split('\n');
+      const [header, ...lines] = data.trim().split('');
       const headers = header.split(',');
       const nameIndex = headers.indexOf("unitName");
       if (nameIndex === -1) {
@@ -165,7 +160,7 @@ function handleSubmit(event) {
     larm: document.getElementById('larm-select').value,
     rback: document.getElementById('rback-select').value,
     lback: document.getElementById('lback-select').value,
-    downloadCode: document.getElementById('download-code').value,
+    code: document.getElementById('download-code').value,
     notes: document.getElementById('notes').value
   };
 
@@ -173,12 +168,6 @@ function handleSubmit(event) {
   googleSheetSave(build);
   document.getElementById('build-form').reset();
   grecaptcha.reset();
-}
-
-function makeCell(text) {
-  const td = document.createElement('td');
-  td.textContent = text;
-  return td;
 }
 
 function googleSheetSave(build) {
@@ -193,7 +182,6 @@ function googleSheetSave(build) {
     .then(data => console.log('Saved to Google Sheets:', data))
     .catch(err => console.error('Error saving build:', err));
 }
-
 
 function googleSheetLoad() {
   fetch(GOOGLE_SHEETS_WEBAPP_URL)
@@ -223,17 +211,3 @@ function googleSheetLoad() {
     })
     .catch(err => console.error('Error loading builds:', err));
 }
-
-
-const music = document.getElementById("bg-music");
-const musicToggle = document.getElementById("music-toggle");
-
-musicToggle.addEventListener("click", () => {
-  if (music.paused) {
-    music.play();
-    musicToggle.textContent = "Pause Music";
-  } else {
-    music.pause();
-    musicToggle.textContent = "Play Music";
-  }
-});
