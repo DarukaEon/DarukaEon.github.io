@@ -13,7 +13,7 @@ function copyToClipboard(button) {
 
 
 
-function buildTable(build) {
+function addBuildToPage(build) {
   const container = document.getElementById("builds-container");
   const entry = document.createElement("div");
   entry.className = "build-entry";
@@ -158,13 +158,13 @@ function handleSubmit(event) {
     notes: document.getElementById('notes').value
   };
 
-  buildTable(build);
+  addBuildtoPage(build);
   googleSheetSave(build);
   document.getElementById('build-form').reset();
   grecaptcha.reset();
 }
 
-function buildTable(build) {
+function addBuildtoPage(build) {
   const row = document.createElement('tr');
   row.appendChild(makeCell(build.acName));
   build.parts.forEach(part => row.appendChild(makeCell(part)));
@@ -231,7 +231,7 @@ function googleSheetLoad() {
           code: entry.downloadCode,
           notes: entry.notes
         };
-        buildTable(build);
+        addBuildtoPage(build);
       });
     })
     .catch(err => console.error('Error loading builds:', err));
