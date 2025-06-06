@@ -57,7 +57,7 @@ const PARTS = [
   { id: 'lback-select', file: 'L-Back_Unit' }
 ];
 
-const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxDafgqfwR2XMpAEy5lJywXf-btoHoyFjFCDkLw7TaudyBgtzjpbZtlfibBEHpUtyyy/exec";
+const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxkcZREOnj4iBo32dRJBMsPIOUOrK1sANrX2lXmJzUNK7qG_XB8b5U4X_N5i_5wzr5qHg/exec";
 const BAD_WORDS = ["fuck", "pussy", "bitch", "asshole", "kys", "kill yourself", "dyke", "nigger", "nigga", "niger"];
 
 window.onload = () => {

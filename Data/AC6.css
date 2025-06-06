@@ -1,0 +1,30 @@
+.build-entry {
+    border: 1px solid #aaa;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    max-width: 750px;
+    background-color: #00000066;
+}
+
+.build-entry table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.build-entry th {
+    text-align: left;
+    width: 150px;
+    padding: 6px;
+    background-color: #eaeaea61;
+}
+
+.build-entry td {
+    padding: 6px;
+}
+
+.notes-cell {
+    vertical-align: top;
+    width: 250px;
+    padding-left: 15px;
+}
