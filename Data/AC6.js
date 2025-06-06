@@ -158,13 +158,13 @@ function handleSubmit(event) {
     notes: document.getElementById('notes').value
   };
 
-  addBuildtoPage(build);
+  addBuildToPage(build);
   googleSheetSave(build);
   document.getElementById('build-form').reset();
   grecaptcha.reset();
 }
 
-function addBuildtoPage(build) {
+function addBuildToPage(build) {
   const row = document.createElement('tr');
   row.appendChild(makeCell(build.acName));
   build.parts.forEach(part => row.appendChild(makeCell(part)));
@@ -231,7 +231,7 @@ function googleSheetLoad() {
           code: entry.downloadCode,
           notes: entry.notes
         };
-        addBuildtoPage(build);
+        addBuildToPage(build);
       });
     })
     .catch(err => console.error('Error loading builds:', err));
