@@ -139,22 +139,6 @@ function loadCSVOptions(part) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  const acName = document.getElementById('ac-name').value;
-  const notes = document.getElementById('notes').value;
-
-  // Initialize the filter
-  const filter = new Filter();
-
-  filter.addWords("fuck", "fucker", "nigger", "nigga", "cunt", "bitch", "asshole", "dyke", "kys", "pussy", "faggot", "fag", "chink");
-
-  const normalize = str => str.toLowerCase().replace(/\s+/g, "");
-
-  const isProfane = text => filter.isProfane(normalize(text));
-
-  if (isProfane(acName) || isProfane(notes)) {
-    alert("Your AC name or notes contain inappropriate language. Please revise and try again.");
-    return;
-  }
 
   if (document.getElementById('website').value !== "") {
     alert("Bot submission detected. Submission blocked.");
