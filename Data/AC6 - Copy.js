@@ -191,19 +191,12 @@ function googleSheetLoad() {
       rawBuilds.forEach(entry => {
         const build = {
           acName: entry.acName,
-          head: entry.head,
-          core: entry.core,
-          arms: entry.arms,
-          legs: entry.legs,
-          booster: entry.booster,
-          generator: entry.generator,
-          fcs: entry.fcs,
-          expansion: entry.expansion,
-          rarm: entry.rarm,
-          larm: entry.larm,
-          rback: entry.rback,
-          lback: entry.lback,
-          code: entry.downloadCode,
+          parts: [
+            entry.head, entry.core, entry.arms, entry.legs,
+            entry.booster, entry.generator, entry.fcs, entry.expansion,
+            entry.rarm, entry.larm, entry.rback, entry.lback
+          ],
+          downloadCode: entry.downloadCode,
           notes: entry.notes
         };
         buildTable(build);
@@ -211,7 +204,6 @@ function googleSheetLoad() {
     })
     .catch(err => console.error('Error loading builds:', err));
 }
-
 
 const music = document.getElementById("bg-music");
 const musicToggle = document.getElementById("music-toggle");
