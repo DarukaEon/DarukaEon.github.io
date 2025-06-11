@@ -18,18 +18,18 @@ function buildTable(build) {
   entry.innerHTML = `
     <table>
       <tr><th>AC Name</th><td>${build.acName}</td><td rowspan="14" class="notes-cell">${build.notes}</td></tr>
+      <tr><th>R-Arm</th><td>${build.rarm}</td></tr>
+      <tr><th>L-Arm</th><td>${build.larm}</td></tr>
+      <tr><th>R-Back</th><td>${build.rback}</td></tr>
+      <tr><th>L-Back</th><td>${build.lback}</td></tr>
       <tr><th>Head</th><td>${build.head}</td></tr>
       <tr><th>Core</th><td>${build.core}</td></tr>
       <tr><th>Arms</th><td>${build.arms}</td></tr>
       <tr><th>Legs</th><td>${build.legs}</td></tr>
       <tr><th>Booster</th><td>${build.booster}</td></tr>
-      <tr><th>Generator</th><td>${build.generator}</td></tr>
       <tr><th>FCS</th><td>${build.fcs}</td></tr>
+      <tr><th>Generator</th><td>${build.generator}</td></tr>
       <tr><th>Expansion</th><td>${build.expansion}</td></tr>
-      <tr><th>R-Arm</th><td>${build.rarm}</td></tr>
-      <tr><th>L-Arm</th><td>${build.larm}</td></tr>
-      <tr><th>R-Back</th><td>${build.rback}</td></tr>
-      <tr><th>L-Back</th><td>${build.lback}</td></tr>
       <tr>
         <th>Download Code</th>
         <td>
@@ -43,22 +43,22 @@ function buildTable(build) {
 }
 
 const PARTS = [
+  { id: 'rarm-select', file: 'R-Arm_Unit' },
+  { id: 'larm-select', file: 'L-Arm_Unit' },
+  { id: 'rback-select', file: 'R-Back_Unit' },
+  { id: 'lback-select', file: 'L-Back_Unit' },
   { id: 'head-select', file: 'Head' },
   { id: 'core-select', file: 'Core' },
   { id: 'arms-select', file: 'Arms' },
   { id: 'legs-select', file: 'Legs' },
   { id: 'booster-select', file: 'Booster' },
-  { id: 'generator-select', file: 'Generator' },
   { id: 'fcs-select', file: 'FCS' },
-  { id: 'expansion-select', file: 'Expansion' },
-  { id: 'rarm-select', file: 'R-Arm_Unit' },
-  { id: 'larm-select', file: 'L-Arm_Unit' },
-  { id: 'rback-select', file: 'R-Back_Unit' },
-  { id: 'lback-select', file: 'L-Back_Unit' }
+  { id: 'generator-select', file: 'Generator' },
+  { id: 'expansion-select', file: 'Expansion' }
 ];
 
 const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxkcZREOnj4iBo32dRJBMsPIOUOrK1sANrX2lXmJzUNK7qG_XB8b5U4X_N5i_5wzr5qHg/exec";
-const BAD_WORDS = ["fuck", "pussy", "bitch", "asshole", "kys", "kill yourself", "dyke", "nigger", "nigga", "niger"];
+
 
 window.onload = () => {
   PARTS.forEach(part => loadCSVOptions(part));
@@ -137,22 +137,24 @@ function handleSubmit(event) {
 
   const build = {
     acName: document.getElementById('ac-name').value,
+    rarm: document.getElementById('rarm-select').value,
+    larm: document.getElementById('larm-select').value,
+    rback: document.getElementById('rback-select').value,
+    lback: document.getElementById('lback-select').value,
     head: document.getElementById('head-select').value,
     core: document.getElementById('core-select').value,
     arms: document.getElementById('arms-select').value,
     legs: document.getElementById('legs-select').value,
     booster: document.getElementById('booster-select').value,
-    generator: document.getElementById('generator-select').value,
     fcs: document.getElementById('fcs-select').value,
+    generator: document.getElementById('generator-select').value,
     expansion: document.getElementById('expansion-select').value,
-    rarm: document.getElementById('rarm-select').value,
-    larm: document.getElementById('larm-select').value,
-    rback: document.getElementById('rback-select').value,
-    lback: document.getElementById('lback-select').value,
     code: document.getElementById('download-code').value,
     notes: document.getElementById('notes').value
   };
 
+
+  const BAD_WORDS = ["fuck", "pussy", "bitch", "asshole", "kys", "kill yourself", "dyke", "nigger", "nigga", "niger", "faggot", "fag", "f@g", "f@ggot", "@sshole", "cunt", "shit", "@ss"];
   const combinedText = (build.acName + build.notes).replace(/\s+/g, '');
   if (containsProfanity(combinedText)) {
     alert("Please remove offensive words from AC Name or Notes.");
