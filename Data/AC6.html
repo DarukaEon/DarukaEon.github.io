@@ -20,7 +20,9 @@
       <source src="../Media/Sounds/Armored Core The Last Raven - The Game.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
-    <button id="music-toggle">Play Music</button>
+    <div id="music-button-wrapper">
+      <button id="music-toggle">Play Music</button>
+    </div>
   </div>
 
   <p>
@@ -86,9 +88,32 @@
     style="margin-bottom: 15px; width: 20%; padding: 8px; font-size: 14px;">
   </p>
 
+  <label for="sort-key">Sort by:</label>
+  <select id="sort-key">
+    <option value="acName">AC Name</option>
+    <option value="rarm">R-Arm</option>
+    <option value="larm">L-Arm</option>
+    <option value="rback">R-Back</option>
+    <option value="lback">L-Back</option>
+    <option value="head">Head</option>
+    <option value="core">Core</option>
+    <option value="arms">Arms</option>
+    <option value="legs">Legs</option>
+    <option value="booster">Booster</option>
+    <option value="fcs">FCS</option>
+    <option value="generator">Generator</option>
+    <option value="expansion">Expansion</option>
+  </select>
+
+  <select id="sort-order">
+    <option value="asc">Ascending (A → Z)</option>
+    <option value="desc">Descending (Z → A)</option>
+  </select>
+
 
   <p>
   <h2>Saved Builds</h2>
+  <button id="toggle-all" style="margin-bottom: 10px;">Collapse All</button>
   <div id="builds-container"></div>
   </p>
 
