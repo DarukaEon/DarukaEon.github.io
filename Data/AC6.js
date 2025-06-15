@@ -76,7 +76,7 @@ const PARTS = [
 ];
 
 const GOOGLE_SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxkcZREOnj4iBo32dRJBMsPIOUOrK1sANrX2lXmJzUNK7qG_XB8b5U4X_N5i_5wzr5qHg/exec";
-const BAD_WORDS = ["fuck", "pussy", "bitch", "asshole", "kys", "kill yourself", "dyke", "nigger", "nigga", "niger", "faggot", "fag", "f@g", "f@ggot", "@sshole", "cunt", "shit", "@ss"];
+const BAD_WORDS = ["fuck", "pussy", "bitch", "asshole", "kys", "kill yourself", "dyke", "nigger", "nigga", "faggot", "fag", "f@g", "f@ggot", "@sshole", "cunt", "shit", "@ss", "retard"];
 
 window.onload = () => {
   PARTS.forEach(part => loadCSVOptions(part));
@@ -286,5 +286,3 @@ function renderBuilds() {
 
   sorted.forEach(build => buildTable(build));
 }
-
-
