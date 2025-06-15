@@ -9,9 +9,8 @@
 ✅ - Offensive language filter
 ✅ - Sort function for each column
 ✅ - Expand/collapse each table
-👁️‍🗨️ - Fix website format
+✅ - Fix website format
 💭 - Allow users to update their own builds
-
 
 Maybe:
 💭 - Force users to make a Google account in order to upload builds
