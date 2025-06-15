@@ -19,7 +19,7 @@ function buildTable(build) {
   entry.className = "build-entry";
   entry.innerHTML = `
     <div class="build-header">
-      <h2>AC Name - ${build.acName}</h2>
+      <th>AC Name ♦ ${build.acName}</th>
       <button class="collapse-btn">Collapse</button>
     </div>
     <div class="build-body">
