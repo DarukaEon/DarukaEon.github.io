@@ -158,10 +158,6 @@ window.onload = () => {
       toggleAllBtn.textContent = isCollapsed ? "Expand All" : "Collapse All";
     });
   }
-
-
-
-
 };
 
 function containsProfanity(text) {
