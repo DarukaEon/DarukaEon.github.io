@@ -80,6 +80,14 @@ async function handleCommand(command) {
         await typewriterEffect("Example: READ myfile.txt, will output the contents of myfile.txt.\n\n");
 
     } else if (command === 'read hex.txt') {
+        const music = document.getElementById("bgm");
+
+        if (music && music.paused) {
+            music.volume = 1;
+            music.play().catch(() => {
+                console.log("Autoplay blocked until user interaction.");
+            });
+        }
 
         await typewriterEffect("49 20 6B 6E 6F 77 20 79 6F 75 20 63 61 6E 20 72 65 61 64 20 74 68 69 73 2C 20 73 6F 20 74 61 6B \n");
         await typewriterEffect("65 20 68 65 65 64 2E 0A 0A 4D 79 20 6E 61 6D 65 20 69 73 20 4D 69 6B 27 72 61 2C 20 70 61 72 74 \n");
@@ -106,53 +114,46 @@ async function handleCommand(command) {
         await typewriterEffect("74 68 65 72 20 73 69 64 65 2C 20 6D 79 20 66 72 69 65 6E 64 21 20 20 20 20 20 20 20 20 20 20 20\n\n");
         await typewriterEffect("--- END OF FILE ---\n\n");
 
-    } else if (command === "wget 8f5cc6430613f1c12f36965050bb7197.md5") {
 
-        // Simulate a file download
+    } else if (command === "wget 8f5cc6430613f1c12f36965050bb7197.md5") {
         await typewriterEffect("Downloading file...\n\n");
 
         var a = document.createElement('a');
         a.href = '8f5cc6430613f1c12f36965050bb7197.md5';
-        a.download = '8f5cc6430613f1c12f36965050bb7197.md5'; // This sets the download filename
+        a.download = '8f5cc6430613f1c12f36965050bb7197.md5';
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
 
     } else if (command === "wget 8s5pp6430613s1p12s36965050oo7197.zq5") {
-
-        // Simulate a file download
         await typewriterEffect("Downloading file...\n\n");
 
         var a = document.createElement('a');
         a.href = '8s5pp6430613s1p12s36965050oo7197.zq5';
-        a.download = '8s5pp6430613s1p12s36965050oo7197.zq5'; // This sets the download filename
+        a.download = '8s5pp6430613s1p12s36965050oo7197.zq5';
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
 
     } else if (command === "wget Discord.md5") {
-
-        // Simulate a file download
         await typewriterEffect("Downloading file...\n\n");
 
         var a = document.createElement('a');
         a.href = 'Discord.md5';
-        a.download = 'Discord.md5'; // This sets the download filename
+        a.download = 'Discord.md5';
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
 
     } else if (command === "wget hex.txt") {
-
-        // Simulate a file download
         await typewriterEffect("Downloading file...\n\n");
 
         var a = document.createElement('a');
         a.href = 'hex.txt';
-        a.download = 'hex.txt'; // This sets the download filename
+        a.download = 'hex.txt';
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();
@@ -175,7 +176,6 @@ async function handleCommand(command) {
 
     } else {
 
-        // Display an error message for an incorrect command
         await typewriterEffect("'" + command + "'" + " is not recognized as an internal or external command,\n" + "operable program or batch file.\n\n");
 
     }
